@@ -1,0 +1,17 @@
+[
+  {
+    "id": "lcyRB-c2Gm0",
+    "title": "S3 Bucket Policy Explained in 60 Seconds",
+    "description": "Quick breakdown of S3 bucket policies and common pitfalls."
+  },
+  {
+    "id": "LUYUuRe819g",
+    "title": "IAM Roles vs Users — What's the Difference?",
+    "description": "Understand when to use IAM roles vs IAM users for your AWS workloads."
+  },
+  {
+    "id": "eSFA95SyREg",
+    "title": "AWS Security Groups Demystified",
+    "description": "Security groups explained simply with real-world examples."
+  }
+]

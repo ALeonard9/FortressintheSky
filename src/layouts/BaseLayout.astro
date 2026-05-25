@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Fortress in the Sky', description = 'AWS Cloud Security tips and tutorials' } = Astro.props;
+
+const SITE = Astro.site || new URL('http://localhost:4321');
+const OG_IMAGE = new URL(`${import.meta.env.BASE_URL}/images/FitS_Logo.png`, SITE).href;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="keywords" content="AWS, Cloud Security, DevOps, Cloud, Security, Tutorial" />
+  <meta name="author" content="Fortress in the Sky" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={OG_IMAGE} />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={OG_IMAGE} />
+
+  <title>{title}</title>
+  <link rel="icon" href={`${import.meta.env.BASE_URL}/images/FitS_Logo.png`} />
+
+  <script is:inline>
+    (function () {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
+  <slot />
+</body>
+</html>

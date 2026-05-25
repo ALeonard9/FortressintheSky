@@ -1,0 +1,49 @@
+---
+export interface Props {
+  id: string;
+  title: string;
+  description: string;
+}
+
+const { id, title, description } = Astro.props;
+const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+const embedUrl = `https://www.youtube.com/embed/${id}?playsinline=1&rel=0&autoplay=1`;
+---
+
+<div class="video-card overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
+  <div class="relative aspect-video cursor-pointer bg-black" data-video-id={id} data-embed-url={embedUrl}>
+    <img
+      src={thumbnail}
+      alt={`${title} thumbnail`}
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 flex items-center justify-center bg-black/30 transition hover:bg-black/40">
+      <svg class="h-14 w-14 text-white drop-shadow-lg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </div>
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-gray-900 dark:text-white">{title}</h3>
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">{description}</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.video-card').forEach((card) => {
+    const thumbnailDiv = card.querySelector('.video-card > div:first-child');
+    const embedUrl = thumbnailDiv?.dataset.embedUrl;
+    const videoId = thumbnailDiv?.dataset.videoId;
+
+    thumbnailDiv?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = embedUrl ?? '';
+      iframe.className = 'h-full w-full absolute inset-0';
+      iframe.allowFullscreen = true;
+      iframe.allow = 'autoplay; encrypted-media';
+      thumbnailDiv.innerHTML = '';
+      thumbnailDiv.appendChild(iframe);
+    });
+  });
+</script>

@@ -1,0 +1,36 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const navLinks = [
+  { href: '#blog', label: 'Blog' },
+  { href: '#videos', label: 'Videos' },
+  { href: '#about', label: 'About Me' },
+];
+---
+
+<nav class="flex items-center justify-between gap-4 bg-[#87cefa] px-4 py-3 text-white shadow dark:bg-gray-800 sm:px-6">
+  <a href="#" class="flex items-center gap-3 no-underline">
+    <img
+      src={`${import.meta.env.BASE_URL}/images/FitS_Logo.png`}
+      alt="Fortress in the Sky logo"
+      class="h-10 w-10 rounded sm:h-12 sm:w-12"
+    />
+    <span class="text-lg font-bold sm:text-xl">Fortress in the Sky</span>
+  </a>
+
+  <div class="flex items-center gap-6">
+    <ul class="flex gap-6" aria-label="Main navigation">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="text-white no-underline hover:underline"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <ThemeToggle />
+  </div>
+</nav>

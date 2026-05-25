@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ALeonard9.github.io/FortressintheSky/sitemap.xml
